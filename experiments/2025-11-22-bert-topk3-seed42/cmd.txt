@@ -1,0 +1,1 @@
+python scripts/SemEval_Simple_TopK3.py --train_jsonl data/train/questions.jsonl --train_docs_json data/train/docs.json --dev_jsonl data/dev/questions.jsonl --dev_docs_json data/dev/docs.json --save_dir outputs_bert_topk3 --backbone bert-base-uncased --epochs 3 --batch_size 1 --max_len 384 --window 224 --stride 144 --max_windows 6 --agg topk --topk_k 3 --pos_weight --amp --seed 42

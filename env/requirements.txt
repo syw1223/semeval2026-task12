@@ -1,7 +1,7 @@
-torch>=2.2
-transformers>=4.44
-tokenizers>=0.19
-datasets>=2.20
+torch==2.2.*
+transformers==4.44.*
+tokenizers==0.19.*
+datasets==2.20.*
 numpy
 pandas
 scikit-learn
