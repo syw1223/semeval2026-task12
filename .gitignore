@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+
+# DL artifacts / caches
+*.pt
+*.bin
+*.safetensors
+*.ckpt
+*.onnx
+lightning_logs/
+wandb/
+.cache/
+.huggingface/
+datasets/
+
+# Local env / misc
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+.autodl/
+.Trash-0/
+
+# Models & data (keep only data/README.md)
+models/
+data/**
+!data/README.md
+
+# Outputs: ignore all except tiny dev reports if需要
+outputs**/
+outputs_*/
+!outputs/dev/
+!outputs/dev/*.json
+!outputs/dev/*.png
