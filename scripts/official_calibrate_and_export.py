@@ -20,7 +20,7 @@ python official_calibrate_and_export.py \
   --apply_to_test --pred_test outputs_bert_topk3/test_predictions.json
 
 备注：
-- 本脚本做“全局阈值”搜索（简单稳妥）。若需要“按标签阈值”，可后续扩展。
+- 本脚本做“全局阈值”搜索
 - 预测文件需包含 prob_A..prob_D（浮点），以及一个 id 字段（优先 uuid/ question_id）。
 """
 

@@ -8,7 +8,6 @@ Post-calib 评估脚本（带自检日志）
 import os, sys, json, numpy as np
 from collections import Counter
 
-# ==== 路径自检：按你刚才的运行日志设置 ====
 PRED = "outputs_asl_g02_clip003/dev_predictions.json"
 GOLD = "data/dev/questions.jsonl"
 

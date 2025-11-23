@@ -9,7 +9,7 @@ SemEval AER 多标签 —— 最简稳健版（TopK=3，AMP-safe）
 - 导出：dev_predictions.json（含 prob_A..D 与 prediction），val_calibration.json（保存阈值）
 - 预测：--predict_only 可对 test 集用保存的 per-label 阈值直接导出
 
-推荐命令（复现你最稳设置）
+推荐命令（最优参数）
 python scripts/SemEval_Simple_TopK3.py \
   --train_jsonl data/train/questions.jsonl \
   --train_docs_json data/train/docs.json \
@@ -23,7 +23,7 @@ python scripts/SemEval_Simple_TopK3.py \
   --pos_weight \
   --amp
 
-预测 test（示例）：
+预测 test：
 python scripts/SemEval_Simple_TopK3.py \
   --predict_only \
   --test_jsonl data/test/questions.jsonl \
@@ -92,7 +92,6 @@ class QADataset(Dataset):
                 event = str(o.get("event", ""))
                 opts = [str(o.get("option_A", "")), str(o.get("option_B", "")), str(o.get("option_C", "")), str(o.get("option_D", ""))]
                 gold = str(o.get("golden_answer", ""))
-                # 简化：用所有 docs（如果你有 per-question 相关 doc_ids，可在此替换）
                 all_text = "\n\n".join(self.docs_map.values())
                 chunks = self._make_chunks(all_text)
                 self.items.append({"qid": qid, "event": event, "options": opts, "chunks": chunks, "gold": gold})

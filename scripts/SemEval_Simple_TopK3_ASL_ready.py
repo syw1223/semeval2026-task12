@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 SemEval-2026 Task 12 — Simple TopK(窗口) 多标签基线（BCE/ASL 可切换，纯 Torch 聚合，fp16 安全）
-- 与“稳定版”命令行参数保持一致；新增 --loss {bce, asl} 与 ASL 超参
+- 新增 --loss {bce, asl} 与 ASL 超参
 - 关键修复：
   1) 聚合前将序列窗口 logits 转回 float32，避免 AMP(fp16) 极小值溢出；
   2) 聚合函数改为纯 PyTorch 实现（不经 numpy、不用 .item() 构造新张量），保持可微；
