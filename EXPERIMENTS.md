@@ -109,6 +109,7 @@ python3 scripts/SemEval_Simple_TopK3.py \
   --pos_weight \
   --amp \
   --seed 42
+```
 
 3.2.2 B：BERT + 增强(Q1000, D3000)
 python3 scripts/SemEval_Simple_TopK3.py \
