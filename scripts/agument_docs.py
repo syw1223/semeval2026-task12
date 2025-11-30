@@ -1,6 +1,7 @@
 import os
 # 设置镜像
 os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 import json
 import random
 from transformers import pipeline

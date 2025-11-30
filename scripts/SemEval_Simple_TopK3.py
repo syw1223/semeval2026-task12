@@ -10,14 +10,14 @@ SemEval AER 多标签 —— 最简稳健版（TopK=3，AMP-safe）
 - 预测：--predict_only 可对 test 集用保存的 per-label 阈值直接导出
 
 推荐命令（最优参数）
-python scripts/SemEval_Simple_TopK3.py \
-  --train_jsonl data/train/questions.jsonl \
-  --train_docs_json data/train/docs.json \
+python3 scripts/SemEval_Simple_TopK3.py \
+  --train_jsonl data/train/questions_augmented_1000.jsonl\
+  --train_docs_json data/train/docs_augmented_3000.json \
   --dev_jsonl   data/dev/questions.jsonl \
   --dev_docs_json   data/dev/docs.json \
-  --save_dir outputs_bert_topk3 \
+  --save_dir outputs_bert_topk3_augQ1000_D3000_e5_b5 \
   --backbone bert-base-uncased \
-  --epochs 1 --batch_size 1 \
+  --epochs 5 --batch_size 5 \
   --max_len 384 --window 224 --stride 144 --max_windows 6 \
   --agg topk --topk_k 3 \
   --pos_weight \
@@ -33,6 +33,7 @@ python scripts/SemEval_Simple_TopK3.py \
 
 from __future__ import annotations
 import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "1" 
 os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 import json, math, argparse, random
 from typing import Dict, List, Tuple

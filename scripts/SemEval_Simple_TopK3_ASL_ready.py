@@ -12,6 +12,7 @@ SemEval-2026 Task 12 — Simple TopK(窗口) 多标签基线（BCE/ASL 可切换
 
 import os
 os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 import json
 import math
 import random

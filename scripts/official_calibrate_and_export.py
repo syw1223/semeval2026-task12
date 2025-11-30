@@ -12,7 +12,7 @@ Official post-hoc calibration + export for SemEval-2026 Task 12 (AER)
 
 运行示例：
 python official_calibrate_and_export.py \
-  --pred_dev outputs_bert_topk3/dev_predictions.json \
+  --pred_dev outputs_bert_topk3_augQ1000_D3000_e3_b1_seed42/dev_predictions.json \
   --gold_dev data/dev/questions.jsonl \
   --out_dir outputs_bert_topk3 \
   --thr_min 0.20 --thr_max 0.60 --thr_step 0.01 \

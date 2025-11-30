@@ -8,7 +8,7 @@ Post-calib 评估脚本（带自检日志）
 import os, sys, json, numpy as np
 from collections import Counter
 
-PRED = "outputs_asl_g02_clip003/dev_predictions.json"
+PRED = "outputs_deberta_v3_topk3_orig_e3_b2/dev_predictions.json"
 GOLD = "data/dev/questions.jsonl"
 
 print("[INFO] Script started.")
