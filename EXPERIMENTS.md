@@ -110,7 +110,7 @@ python3 scripts/SemEval_Simple_TopK3.py \
   --amp \
   --seed 42
 
-- **B：BERT + 增强(Q1000, D3000) **
+3.2.2 B：BERT + 增强(Q1000, D3000)
 python3 scripts/SemEval_Simple_TopK3.py \
   --train_jsonl data/train/questions_augmented_1000.jsonl \
   --train_docs_json data/train/docs_augmented_3000.json \
@@ -126,7 +126,7 @@ python3 scripts/SemEval_Simple_TopK3.py \
   --amp \
   --seed 42
 
-- **C：DeBERTa-v3 + 原始数据（当前最优配置）**
+3.2.3 D：DeBERTa-v3 + 原始数据（当前最优配置）
 python3 scripts/SemEval_Simple_TopK3.py \
   --train_jsonl data/train/questions.jsonl \
   --train_docs_json data/train/docs.json \
@@ -142,7 +142,7 @@ python3 scripts/SemEval_Simple_TopK3.py \
   --amp \
   --seed 42
 
-- **D：DeBERTa-v3 + 增强(Q1000, D3000) **
+3.2.4 E：DeBERTa-v3 + 增强(Q1000, D3000)
 python3 scripts/SemEval_Simple_TopK3.py \
   --train_jsonl data/train/questions_augmented_1000.jsonl \
   --train_docs_json data/train/docs_augmented_3000.json \
@@ -157,12 +157,12 @@ python3 scripts/SemEval_Simple_TopK3.py \
   --pos_weight \
   --amp \
   --seed 42
----
-##4. 多标签预测行为分析（每题预测集合大小分布）
+
+4. 多标签预测行为分析（每题预测集合大小分布）
 
 为观察模型是否“过于保守”或“过于贪心”，统计 dev 集上每道题预测了多少个标签（|预测集合|）。
 
-###4.1 BERT + 原始数据（A）
+4.1 BERT + 原始数据（A）
 
 1 个标签：26.5%
 
@@ -174,7 +174,7 @@ python3 scripts/SemEval_Simple_TopK3.py \
 
 行为：多标签预测比较丰富，1～4 个标签都有，和任务设定较匹配。
 
-###4.2 DeBERTa-v3 + 原始数据（D）
+4.2 DeBERTa-v3 + 原始数据（D）
 
 1 个标签：28.5%
 
@@ -186,7 +186,7 @@ python3 scripts/SemEval_Simple_TopK3.py \
 
 行为：与 BERT+原始类似，但更愿意预测 3–4 个标签，召回略好，因此宏 F1 与官方分略高于 BERT baseline。
 
-###4.3 DeBERTa-v3 + 增强数据（E）
+4.3 DeBERTa-v3 + 增强数据（E）
 
 1 个标签：71.8%
 
@@ -196,12 +196,11 @@ python3 scripts/SemEval_Simple_TopK3.py \
 
 4 个标签：0.8%
 
-行为：模型明显偏向单标签预测（超过 70% 的题只选 1 个选项），多标签能力几乎被“抹平”，导致召回严重下降，macro-F1 和官方分均明显低于原始数据训练的同一 backbone。
---
-##5. 本周总结
-###5.1 结论
+行为：模型明显偏向单标签预测（超过 70% 的题只选 1 个选项），
+多标签能力几乎被“抹平”，导致召回严重下降，macro-F1 和官方分均明显低于原始数据训练的同一 backbone。
 
-1.Backbone 替换效果
+5. 结论
+5.1 Backbone 替换效果
 
 在完全相同的原始 train/dev 数据和训练脚本下，将 backbone 从 bert-base-uncased 换为 microsoft/deberta-v3-base：
 
@@ -212,7 +211,7 @@ macro-F1：约从 0.637 → 0.640
 因此，目前最优配置为：
 DeBERTa-v3-base + 原始 train 数据（ID D）。
 
-当前版本数据增强的收益有限 / 对 DeBERTa 有负面影响
+5.2 当前版本数据增强的收益有限 / 对 DeBERTa 有负面影响
 
 对 BERT 而言：
 
@@ -224,7 +223,7 @@ DeBERTa-v3-base + 原始 train 数据（ID D）。
 
 说明当前合成数据的分布与 dev/test 存在偏差，且 对大容量 backbone（DeBERTa-v3）更敏感。
 
-整体评价
+5.3 整体评价
 
 目前这版“黑盒蒸馏式”数据增强，在现有 prompt 与比例（Q=1000, D≈3000）下，尚未在 dev 上带来稳定的性能提升；
 
