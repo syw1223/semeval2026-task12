@@ -9,9 +9,9 @@ from transformers import pipeline
 # 原始 docs.json 路径（改成你自己的）
 INPUT_DOCS_PATH = "data/train/docs.json"
 # 增强后保存路径
-OUTPUT_DOCS_PATH = "data/train/docs_augmented_3000.json"
+OUTPUT_DOCS_PATH = "data/train/docs_augmented_1000.json"
 
-TARGET_DOCS_COUNT = 3000  # 目标总新闻条数
+TARGET_DOCS_COUNT = 1000  # 目标总新闻条数
 
 # ================== 1. 读取原始数据 ==================
 with open(INPUT_DOCS_PATH, "r", encoding="utf-8") as f:
@@ -52,7 +52,7 @@ if num_synthetic_needed == 0:
 generator = pipeline(
     "text-generation",
     model="gpt2-medium",
-    device=0  # 用 cuda:0
+    device=1  # 用 cuda:1
 )
 
 # ================== 3. 定义增强函数 ==================
